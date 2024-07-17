@@ -79,7 +79,8 @@ public class AudioEngine {
 
         func connect(to engine: AudioEngine) {
             engine.avEngine.attach(avAudioNode)
-            engine.avEngine.connect(engine.avEngine.inputNode, to: avAudioNode, format: nil)
+            let inputFormat = engine.avEngine.inputNode.outputFormat(forBus: 0)
+            engine.avEngine.connect(engine.avEngine.inputNode, to: avAudioNode, format: inputFormat)
         }
     }
 
